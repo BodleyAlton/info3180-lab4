@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block main %}
+<h1 class="page-header">Uploaded Files</h1>
+{% for item in List%}
+    <ul>
+        <li> {{item}}</li>
+    </ul>
+{%endfor%}
+{% endblock %}

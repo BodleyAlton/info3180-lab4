@@ -5,6 +5,7 @@ Werkzeug Documentation:  http://werkzeug.pocoo.org/documentation/
 This file creates your application.
 """
 import os
+from listing import list_all
 from app import app
 from flask import render_template, request, redirect, url_for, flash, session, abort, jsonify
 from werkzeug.utils import secure_filename
@@ -40,6 +41,15 @@ def add_file():
         return redirect(url_for('home'))
 
     return render_template('add_file.html')
+
+@app.route('/filelisting')
+def list_files():
+    if not session.get('logged_in'):
+        abort(401)
+    List=[]
+    List= list_all()
+    print list_all()
+    return render_template('listing.html',List=List)
 
 @app.route('/login', methods=['POST', 'GET'])
 def login():
